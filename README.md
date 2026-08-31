@@ -45,6 +45,8 @@ The project focuses on understanding the architecture and implementation of a sc
 
 ### 1. Test Data Generation
 
+<img width="967" height="870" alt="image" src="https://github.com/user-attachments/assets/32eb797d-765a-43d9-8c82-b86be51f1397" />
+
 A Streamlit application was developed to generate simulated application event logs.
 
 Each event contains attributes such as:
@@ -57,12 +59,13 @@ Each event contains attributes such as:
 The application presents the events as a button grid, allowing individual events to be triggered manually for testing.
 
 ### 2. Streamlit Event Producer
-<img width="967" height="870" alt="image" src="https://github.com/user-attachments/assets/32eb797d-765a-43d9-8c82-b86be51f1397" />
 
 The Streamlit application uses Python to generate event data and send HTTP POST requests.
 The `requests` library is used to communicate with the API Gateway endpoint.
 
 ### 3. API Gateway Configuration
+
+<img width="1792" height="437" alt="Screenshot 2026-08-31 at 3 25 20 PM" src="https://github.com/user-attachments/assets/79987410-3884-46f1-9089-b3fe85523638" />
 
 Amazon API Gateway was configured to receive HTTP requests from the Streamlit application.
 
@@ -113,6 +116,8 @@ This configuration was used for the purpose of the exercise and may be replaced 
 
 ### 5. Kinesis Data Streams
 
+<img width="1792" height="382" alt="Screenshot 2026-08-31 at 3 25 51 PM" src="https://github.com/user-attachments/assets/6ac94ecd-0941-48b3-835d-5a20a49b44dd" />
+
 Amazon Kinesis Data Streams was used as the real-time streaming layer.
 
 The service receives application event records from API Gateway and makes them available for downstream processing.
@@ -152,6 +157,10 @@ Potential improvements include:
 - Add automated data validation
 - Introduce downstream processing using AWS Lambda or Amazon Data Firehose
 - Improve the event schema for production use
+
+## Results
+
+<img width="1792" height="516" alt="Screenshot 2026-08-31 at 3 24 50 PM" src="https://github.com/user-attachments/assets/ab1ecb45-fa70-49ce-8776-deca604cb22d" />
 
 ## Conclusion
 
