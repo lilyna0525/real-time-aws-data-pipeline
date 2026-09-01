@@ -6,6 +6,8 @@ A real-time application event logging pipeline using Streamlit, Amazon API Gatew
 
 This project demonstrates how application event logs can be collected and streamed in real time using AWS managed services.
 
+The application simulates various user interaction events, including app installations, screen views, searches, authentication, and purchases.
+
 A Streamlit application generates simulated user event data and sends the events to an API Gateway endpoint through HTTP POST requests. Amazon API Gateway transforms the incoming requests and forwards them to an Amazon Kinesis Data Stream for real-time ingestion.
 
 The project focuses on understanding the architecture and implementation of a scalable event data collection pipeline.
@@ -84,9 +86,13 @@ The mapping template performs the following operations:
 
 #### Dynamic Stream Selection
 
-The Kinesis stream name was passed as a request parameter instead of being hard-coded in the API Gateway integration.
+The target Kinesis stream is configured through an environment variable rather than being hard-coded in the application.
 
-This allows the target stream to be specified dynamically through the API request.
+The Streamlit application constructs the API endpoint using the configured stream name:
+
+`API Gateway Base URL + Stream Name`
+
+This allows the same application to send events to different Kinesis streams without modifying the source code.
 
 ```text
 API Request
@@ -149,14 +155,22 @@ No significant troubleshooting issues were encountered during the implementation
 
 ## Improvements
 
-Potential improvements include:
+The original implementation was extended with the following improvements:
 
-- Add request validation and error handling
-- Add authentication and authorisation to the API endpoint
-- Implement structured logging and monitoring
-- Add automated data validation
-- Introduce downstream processing using AWS Lambda or Amazon Data Firehose
-- Improve the event schema for production use
+- Added basic HTTP response handling to provide immediate feedback when event delivery succeeds or fails
+- Moved the API Gateway endpoint to an environment variable instead of hard-coding it in the source code
+- Added a configurable Kinesis stream name to support dynamic stream selection
+- Improved the application structure and readability by separating configuration, event generation, and request handling
+- Added request timeout and exception handling for more robust API communication
+
+### Potential Future Improvements
+
+- Add API authentication and authorisation
+- Implement structured logging and monitoring with Amazon CloudWatch
+- Add automated event data validation
+- Evaluate application-specific partition key strategies
+- Introduce automated testing
+- Implement downstream data processing and analytics
 
 ## Results
 
